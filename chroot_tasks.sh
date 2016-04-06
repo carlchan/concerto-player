@@ -22,10 +22,10 @@ esac
 
 # install packages we need (build-essential is temporary)
 apt-get -y install xserver-xorg xserver-xorg-video-all \
-	chromium unclutter ifplugd xinit blackbox \
-	ruby2.1 build-essential \
-	vim screen git-core ntpdate openssh-server \
-	firmware-linux-nonfree
+        chromium unclutter ifplugd xinit blackbox \
+        ruby build-essential rubygems-integration ruby-dev \
+        vim screen git-core ntpdate openssh-server \
+        firmware-linux-nonfree
 
 # and rubygems we need
 #gem install bandshell
@@ -111,8 +111,8 @@ done
 chromium --disable-translate --disable-infobars --no-first-run --kiosk $URL
 EOF
 
-# modify inittab so we auto-login at boot as concerto
-sed -i -e 's/getty 38400 tty2/getty -a concerto tty2/' /etc/inittab
+# modify systemd so we auto-login at boot as concerto
+sed -i -e 's/agetty --noclear/agetty -a concerto --noclear/' /etc/systemd/system/getty.target.wants/getty\@tty1.service
 
 # create rc.local file to start bandshell
 cat > /etc/rc.local << EOF
