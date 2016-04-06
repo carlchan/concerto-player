@@ -23,7 +23,7 @@ esac
 # install packages we need (build-essential is temporary)
 apt-get -y install xserver-xorg xserver-xorg-video-all \
 	chromium unclutter ifplugd xinit blackbox \
-	ruby1.9.1-full build-essential \
+	ruby2.1 build-essential \
 	vim screen git-core ntpdate openssh-server \
 	firmware-linux-nonfree
 
